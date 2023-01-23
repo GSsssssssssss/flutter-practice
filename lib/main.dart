@@ -1,5 +1,6 @@
 
 
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -7,122 +8,128 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Scaffold(
-        
-        body: SafeArea(
-          child: Column(
-            
-            crossAxisAlignment: CrossAxisAlignment.start,
-            
-            children: [
-              Container(
-                height: 100,
-                // ignore: prefer_const_constructors
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.yellowAccent, width: 3.0, ),
-                  borderRadius: BorderRadius.circular(40),
-                  
-                ),
-                margin: EdgeInsets.only(top: 20.0),
-
-                child: Container(
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        
-                        children: [
-                        
-                        Container(
-                          child: Text("23/05/2022"),
-                          
-                        ),
-                        Container(
-                          child: Text("Monday"),
-                        )
-                      ],),
-                      Text("Fetch milk from Market", textAlign: TextAlign.left,)
-                    ],
-                  ),
-                ),
-                
-                
-              ),
-             Container(
-              height: 100,
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.yellowAccent, width: 3.0, ),
-                  borderRadius: BorderRadius.circular(40),),
-                  margin: EdgeInsets.only(top: 20.0),
-                child: Container(
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        
-                        Container(
-                          child: Text("24/05/2022")
-                        ),
-                        Container(
-                          child: Text("Tuesday"),
-                        )
-                      ],),
-                     Text("Pay electricity bills", textAlign: TextAlign.left,)
-                    ],
-                  ),
-                ),
-                
-                
-              ),
-             Container(
-              height: 100,
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.yellowAccent, width: 3.0, ),
-                  borderRadius: BorderRadius.circular(40),),
-                  margin: EdgeInsets.only(top: 20.0),
-                child: Container(
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        
-                        Container(
-                          child: Text("24/05/2022")
-                        ),
-                        Container(
-                          child: Text("Tuesday"),
-                        )
-                      ],),
-                     Text("Complete the flutter assignment", textAlign: TextAlign.left,)
-                    ],
-                  ),
-                ),
-                
-                
-              ),
-              
-          ],)
-        
-           
-        )
-  )));
+     home: Scaffold(
+      body: SafeArea(
+      child:  MyCounterWidgetStatefulWidget()
+    )
+     )
+    ));
+   
+  
 }
-// Floating Action Button
-//
 
-//Elevated button "onPressed: () => {print("I'm Pressed")""
+class MyCounterWidgetStatefulWidget extends StatefulWidget {
+
+  @override 
+  State<StatefulWidget> createState() {
+    return MyCounterWidgetState();
+  }
+}
+
+
+class MyCounterWidgetState extends State<MyCounterWidgetStatefulWidget> {
+  int myNumber = 0;
+  @override 
+  
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 300,
+        width: MediaQuery.of(context).size.width-20,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade300,
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  height: 250,
+                  width: MediaQuery.of(context).size.width/2,
+                  margin: EdgeInsets.only(left: 10.0),
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey.shade200,
+                    borderRadius: BorderRadius.circular(20.0)
+                  ),
+                  child: Text("Sarita Blood Bank", style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.w300,))
+                  ,),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 10.0,
+                    top: 20.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      Text("Blood Group", style: TextStyle(color: Colors.redAccent,fontSize: 20, fontWeight: FontWeight.w200)),
+                      Text("B +ve", style: TextStyle(color: Colors.black,fontSize: 30, fontWeight: FontWeight.w400)),
+
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 40.0,
+                        ),
+                        child: Text("Add units:", style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.w100)),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width/3,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.teal,
+                        ),
+                        child: Row(children: [
+                          if(myNumber>0)
+                          ElevatedButton(style: ButtonStyle( backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 210, 199, 199)),
+                         
+                          ),
+                          onPressed: onPressedMinus, child: const Text("-")),
+                          Text(myNumber.toString()),
+                          if(myNumber<9)
+                          ElevatedButton(onPressed: onPressedPlus, child: const Text("+")),
+                                      
+                        ] ),
+                      ),
+                      
+                      
+                    ],
+                  ),
+                )
+              ],
+            ),
+            if(myNumber==9)  
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width-20,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: Colors.redAccent,
+                  borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: const Text("Cannot exceed the value")),
+            ),
+          ],
+
+        ),
+      ),
+    );
+  }
+  void onPressedMinus() {
+    setState(() {
+      myNumber = myNumber - 1 ;
+      });
+  }
+     void onPressedPlus() {
+    setState(() {
+      myNumber = myNumber + 1 ;
+      });
+  }
+}
+//   void onPressedPlus() {
+//     setState(() {
+//       myNumber = myNumber + 1;
+//     });
+//   }
